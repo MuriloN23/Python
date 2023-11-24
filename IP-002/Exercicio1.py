@@ -6,11 +6,13 @@ class ToDoList:
         self.tasks.append({'task': task, 'done': False})
 
     def mark_task_done(self, task_id):
-        if 1 <= task_id <= len(self.tasks):
+        if 1 <= task_id <= len(self.tasks) and not self.tasks[task_id - 1]['done']:
             self.tasks[task_id - 1]['done'] = True
+            # Movendo a tarefa para o início da lista
+            self.tasks.insert(0, self.tasks.pop(task_id - 1))
             print(f'Tarefa {task_id} marcada como concluída.')
         else:
-            print('ID de tarefa inválido.')
+            print('Tarefa não encontrada ou já realizada.')
 
     def register_new_task(self):
         new_task_description = input("Digite a descrição da nova tarefa (começando com maiúscula): ")
@@ -22,7 +24,7 @@ class ToDoList:
             print('A descrição da tarefa deve começar com maiúscula.')
 
     def display_tasks(self):
-        print('Lista de Tarefas:')
+        print('\nLista de Tarefas:')
         for i, task_info in enumerate(self.tasks, start=1):
             task_status = '[x]' if task_info['done'] else '[ ]'
             print(f"{i}. {task_info['task']} {task_status}")
