@@ -19,3 +19,4 @@ def signo_chines(ano_nascimento):
 ano_usuario = int(input("\nDigite o ano de nascimento: "))
 signo = signo_chines(ano_usuario)
 print(f"O signo chinês do usuário é: {signo}")
+20
