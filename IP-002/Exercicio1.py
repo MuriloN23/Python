@@ -12,6 +12,15 @@ class ToDoList:
         else:
             print('ID de tarefa inválido.')
 
+    def register_new_task(self):
+        new_task_description = input("Digite a descrição da nova tarefa (começando com maiúscula): ")
+        if new_task_description[0].isupper():
+            self.add_task(new_task_description)
+            task_id = len(self.tasks)
+            print(f'Tarefa {task_id}. {new_task_description} [ ] registrada!')
+        else:
+            print('A descrição da tarefa deve começar com maiúscula.')
+
     def display_tasks(self):
         print('Lista de Tarefas:')
         for i, task_info in enumerate(self.tasks, start=1):
@@ -27,6 +36,9 @@ todo_list.add_task("Fechar as janelas")
 
 # Marcar a primeira tarefa como concluída
 todo_list.mark_task_done(1)
+
+# Registrar uma nova tarefa
+todo_list.register_new_task()
 
 # Exibir a lista de tarefas
 todo_list.display_tasks()
