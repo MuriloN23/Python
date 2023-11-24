@@ -14,6 +14,14 @@ class ToDoList:
         else:
             print('Tarefa não encontrada ou já realizada.')
 
+    def edit_task(self, task_id):
+        if 1 <= task_id <= len(self.tasks):
+            new_description = input(f"Digite a nova descrição para a tarefa {task_id}: ")
+            self.tasks[task_id - 1]['task'] = new_description
+            print(f'Tarefa {task_id} editada com sucesso.')
+        else:
+            print('Tarefa não encontrada.')
+
     def register_new_task(self):
         new_task_description = input("Digite a descrição da nova tarefa (começando com maiúscula): ")
         if new_task_description[0].isupper():
@@ -24,7 +32,7 @@ class ToDoList:
             print('A descrição da tarefa deve começar com maiúscula.')
 
     def display_tasks(self):
-        print('\nLista de Tarefas:')
+        print('Lista de Tarefas:')
         for i, task_info in enumerate(self.tasks, start=1):
             task_status = '[x]' if task_info['done'] else '[ ]'
             print(f"{i}. {task_info['task']} {task_status}")
@@ -43,4 +51,10 @@ todo_list.mark_task_done(1)
 todo_list.register_new_task()
 
 # Exibir a lista de tarefas
+todo_list.display_tasks()
+
+# Editar uma tarefa existente
+todo_list.edit_task(2)
+
+# Exibir a lista de tarefas após a edição
 todo_list.display_tasks()
